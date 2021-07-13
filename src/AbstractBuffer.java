@@ -1,6 +1,6 @@
 import java.util.Random;
 
-public abstract class AbstractIntegerBuffer<T> implements IntegerBuffer<T> {
+public abstract class AbstractBuffer<T> implements Buffer<T> {
 
 
     protected int size = 0; //Groesse des Speichers
@@ -9,14 +9,16 @@ public abstract class AbstractIntegerBuffer<T> implements IntegerBuffer<T> {
 
     //Konstruktor der einen Speicher der Groesse s erzeugt
     @SuppressWarnings("unchecked")
-    AbstractIntegerBuffer(int s) {
-        array = (T[]) new Object[s];
+    public AbstractBuffer(int capacity) {
+        if (capacity < 0) throw new IllegalArgumentException();
+
+        array = (T[]) new Object[capacity];
     }
 
 
-    //Konstruktor der einen Speicher der zufälligen Groesse zwischen 3 und 100 erzeugt
+    //Konstruktor der einen Speicher der zufälligen Groesse zwischen 3 und 100(inklusive) erzeugt
     @SuppressWarnings("unchecked")
-    AbstractIntegerBuffer() {
+    public AbstractBuffer() {
         int s = new Random().nextInt(100 - 3) + 3;
         array = (T[]) new Object[s];
     }
@@ -24,19 +26,20 @@ public abstract class AbstractIntegerBuffer<T> implements IntegerBuffer<T> {
 
     //schiebt ein Integer Objekt auf den Speicher wenn freie Kapazität vorhanden
     public void push(T i) {
-        if (array.length > size)
+        if (array.length > size) {
             array[size++] = i;
-        else
+        } else {
             throw new ArrayIndexOutOfBoundsException("Speicher ist voll!");
+        }
     }
 
 
-    public final int capacity() {
+    public int capacity() {
         return array.length;
     }
 
 
-    public final int size() {
+    public int size() {
 
         return size;
     }

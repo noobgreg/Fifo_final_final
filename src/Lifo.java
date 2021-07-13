@@ -1,4 +1,4 @@
-public class Lifo<T> extends AbstractIntegerBuffer<T> {
+public class Lifo<T> extends AbstractBuffer<T> {
 
     public Lifo(int s) {
         super(s);

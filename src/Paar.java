@@ -21,19 +21,21 @@ public class Paar<E,Z> {
         return zweitesElement;
     }
 
-    public void setErstes(E e) {
-        System.out.println(erstesElement);
-        this.erstesElement = e;
+    public E setErstes(E e) {
+        E temp = erstesElement;
+        erstesElement = e;
+        return temp;
     }
 
-    public void setZweites(Z z) {
-        System.out.println(zweitesElement);
-        this.zweitesElement = z;
+    public Z setZweites(Z z) {
+        Z temp = zweitesElement;
+        zweitesElement = z;
+        return temp;
     }
 
     public void setBeide(E e, Z z) {
-        this.erstesElement = e;
-        this.zweitesElement = z;
+        setErstes(e);
+        setZweites(z);
     }
 
     public boolean equals(Paar<E,Z> p) {
